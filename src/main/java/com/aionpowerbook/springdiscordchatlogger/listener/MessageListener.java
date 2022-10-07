@@ -1,11 +1,11 @@
 package com.aionpowerbook.springdiscordchatlogger.listener;
 
 import com.aionpowerbook.springdiscordchatlogger.component.LavaPlayerAudioProvider;
+import com.aionpowerbook.springdiscordchatlogger.service.DiscordMessageService;
 import com.aionpowerbook.springdiscordchatlogger.service.TrackScheduler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.VoiceState;
-import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
@@ -18,7 +18,13 @@ public abstract class MessageListener {
     private final LavaPlayerAudioProvider provider;
     private final AudioPlayerManager manager;
     private final TrackScheduler trackScheduler;
+    private final DiscordMessageService discordMessageService;
+
     public Mono<Void> processCommand(MessageCreateEvent event) {
+
+        var message = event.getMessage();
+
+        discordMessageService.saveMessage(message);
 
         var content = event.getMessage().getContent();
 

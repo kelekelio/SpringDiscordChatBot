@@ -5,15 +5,14 @@ import com.aionpowerbook.springdiscordchatlogger.listener.EventListener;
 import com.aionpowerbook.springdiscordchatlogger.listener.MessageListener;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import discord4j.core.event.domain.message.MessageUpdateEvent;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
 public class MessageUpdateListener extends MessageListener implements EventListener<MessageUpdateEvent> {
 
-    public MessageUpdateListener(LavaPlayerAudioProvider provider, AudioPlayerManager manager, TrackScheduler trackScheduler) {
-        super(provider, manager, trackScheduler);
+    public MessageUpdateListener(LavaPlayerAudioProvider provider, AudioPlayerManager manager, TrackScheduler trackScheduler, DiscordMessageService discordMessageService) {
+        super(provider, manager, trackScheduler, discordMessageService);
     }
 
     @Override

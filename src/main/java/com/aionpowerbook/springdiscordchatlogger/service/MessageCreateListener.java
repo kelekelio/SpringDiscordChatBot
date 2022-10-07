@@ -11,8 +11,8 @@ import reactor.core.publisher.Mono;
 @Service
 public class MessageCreateListener extends MessageListener implements EventListener<MessageCreateEvent> {
 
-    public MessageCreateListener(LavaPlayerAudioProvider provider, AudioPlayerManager manager, TrackScheduler trackScheduler) {
-        super(provider, manager, trackScheduler);
+    public MessageCreateListener(LavaPlayerAudioProvider provider, AudioPlayerManager manager, TrackScheduler trackScheduler, DiscordMessageService discordMessageService) {
+        super(provider, manager, trackScheduler, discordMessageService);
     }
 
     @Override
